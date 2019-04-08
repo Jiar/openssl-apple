@@ -110,8 +110,10 @@ if [ $FWTYPE == "dynamic" ]; then
         if [[ ${#DYLIBS[@]} -gt 0 && -e ${DYLIBS[0]} ]]; then
             echo "Creating framework for $SYS"
             mkdir -p $FWDIR/Headers
+            mkdir -p $FWDIR/Modules
             lipo -create ${DYLIBS[@]} -output $FWDIR/$FWNAME
             cp -r include/$FWNAME/* $FWDIR/Headers/
+            cp -r include/Modules/module.modulemap $FWDIR/Modules/module.modulemap
             cp -L assets/$SYS/Info.plist $FWDIR/Info.plist
             echo "Created $FWDIR"
             check_bitcode $FWDIR
@@ -129,8 +131,10 @@ else
         if [[ -e lib/libcrypto-$SYS.a && -e lib/libssl-$SYS.a ]]; then
             echo "Creating framework for $SYS"
             mkdir -p $FWDIR/Headers
+            mkdir -p $FWDIR/Modules
             libtool -static -o $FWDIR/$FWNAME lib/libcrypto-$SYS.a lib/libssl-$SYS.a
             cp -r include/$FWNAME/* $FWDIR/Headers/
+            cp -r include/Modules/module.modulemap $FWDIR/Modules/module.modulemap
             cp -L assets/$SYS/Info.plist $FWDIR/Info.plist
             echo "Created $FWDIR"
             check_bitcode $FWDIR
