@@ -26,7 +26,7 @@ set -u
 
 # Default version in case no version is specified
 DEFAULTVERSION="1.0.2r"
-# DEFAULTVERSION="1.1.0i"
+# DEFAULTVERSION="1.1.1b"
 
 # Default (=full) set of architectures (OpenSSL <= 1.0.2) or targets (OpenSSL >= 1.1.0) to build
 # iOS support 32bit and 64 bit. macOS, tvOS support 64bit.

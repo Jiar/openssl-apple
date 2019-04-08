@@ -13,28 +13,34 @@ However, this repository focuses more on framework-based setups and also adds ma
 
 # Compile library
 
-Compile OpenSSL 1.0.2k for all archs:
+OpenSSL version:
+
+- [https://www.openssl.org/source](https://www.openssl.org/source)
+- [https://www.openssl.org/news/openssl-1.0.2-notes.html](https://www.openssl.org/news/openssl-1.0.2-notes.html)
+- [https://www.openssl.org/news/openssl-1.1.1-notes.html](https://www.openssl.org/news/openssl-1.1.1-notes.html)
+
+Compile OpenSSL 1.0.2r for all archs:
 
 ```
-./build-libssl.sh --version=1.0.2k
+./build-libssl.sh --version=1.0.2r
 ```
 
-Compile OpenSSL 1.1.0f for all targets:
+Compile OpenSSL 1.1.1b for all targets:
 
 ```
-./build-libssl.sh --version=1.1.0f
+./build-libssl.sh --version=1.1.1b
 ```
 
-Compile OpenSSL 1.0.2k for specific archs:
+Compile OpenSSL 1.0.2r for specific archs:
 
 ```
-./build-libssl.sh --version=1.0.2k --archs="ios_armv7 ios_arm64 mac_i386"
+./build-libssl.sh --version=1.0.2r --archs="ios_armv7 ios_arm64 mac_i386"
 ```
 
-Compile OpenSSL 1.1.0f for specific targets:
+Compile OpenSSL 1.1.1b for specific targets:
 
 ```
-./build-libssl.sh --version=1.1.0f --targets="ios-cross-armv7 macos64-x86_64"
+./build-libssl.sh --version=1.1.1b --targets="ios-cross-armv7 macos64-x86_64"
 ```
 
 For all options see:
