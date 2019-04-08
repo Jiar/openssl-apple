@@ -25,18 +25,21 @@ set -u
 # SCRIPT DEFAULTS
 
 # Default version in case no version is specified
-DEFAULTVERSION="1.1.0i"
+DEFAULTVERSION="1.0.2r"
+# DEFAULTVERSION="1.1.0i"
 
 # Default (=full) set of architectures (OpenSSL <= 1.0.2) or targets (OpenSSL >= 1.1.0) to build
-#DEFAULTARCHS="ios_x86_64 ios_arm64 ios_armv7s ios_armv7 tv_x86_64 tv_arm64 mac_x86_64"
-#DEFAULTTARGETS="ios-sim-cross-x86_64 ios64-cross-arm64 ios-cross-armv7s ios-cross-armv7 tvos-sim-cross-x86_64 tvos64-cross-arm64 macos64-x86_64"
-DEFAULTARCHS="ios_x86_64 ios_arm64 tv_x86_64 tv_arm64 mac_x86_64"
-DEFAULTTARGETS="ios-sim-cross-x86_64 ios64-cross-arm64 tvos-sim-cross-x86_64 tvos64-cross-arm64 macos64-x86_64"
+# iOS support 32bit and 64 bit. macOS, tvOS support 64bit.
+DEFAULTARCHS="ios_x86_64 ios_i386 ios_arm64e ios_arm64 ios_armv7s ios_armv7 mac_x86_64 tv_x86_64 tv_arm64"
+DEFAULTTARGETS="ios-sim-cross-x86_64 ios-sim-cross-i386 ios64-cross-arm64e ios64-cross-arm64 ios-cross-armv7s ios-cross-armv7 macos64-x86_64 tvos-sim-cross-x86_64 tvos64-cross-arm64"
+# iOS, macOS, tvOS support 64bit.
+# DEFAULTARCHS="ios_x86_64 ios_arm64e ios_arm64 mac_x86_64 tv_x86_64 tv_arm64"
+# DEFAULTTARGETS="ios-sim-cross-x86_64 ios64-cross-arm64e ios64-cross-arm64 macos64-x86_64 tvos-sim-cross-x86_64 tvos64-cross-arm64"
 
 # Minimum iOS/tvOS SDK version to build for
-MACOS_MIN_SDK_VERSION="10.11"
-IOS_MIN_SDK_VERSION="11.0"
-TVOS_MIN_SDK_VERSION="11.0"
+MACOS_MIN_SDK_VERSION="10.10"
+IOS_MIN_SDK_VERSION="8.0"
+TVOS_MIN_SDK_VERSION="9.0"
 
 # Init optional env variables (use available variable or default to empty string)
 CURL_OPTIONS="${CURL_OPTIONS:-}"
@@ -542,6 +545,9 @@ if [ ${#OPENSSLCONF_ALL[@]} -gt 1 ]; then
       ;;
       *_ios_i386.h)
         DEFINE_CONDITION="TARGET_OS_IOS && TARGET_OS_SIMULATOR && TARGET_CPU_X86"
+      ;;
+      *_ios_arm64e.h)
+        DEFINE_CONDITION="TARGET_OS_IOS && TARGET_OS_EMBEDDED && TARGET_CPU_ARM64E"
       ;;
       *_ios_arm64.h)
         DEFINE_CONDITION="TARGET_OS_IOS && TARGET_OS_EMBEDDED && TARGET_CPU_ARM64"
